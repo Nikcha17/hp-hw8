@@ -1,10 +1,19 @@
 <?php
-declare(strict_types=1);
+ declare(strict_types=1);
 
-session_start();
-if ($_POST['userName'] !== '') {
-  $_SESSION['name'] = $_POST['userName'];
-}  
+function safeFilter(string $d): string
+{
+    $d = trim($d);
+    $d = stripslashes($d);
+    $d = htmlspecialchars($d);
+    return $data;
+}
 
-$path = $_SERVER["HTTP_HOST"];
-header("Location: http://${path}/index.php");
+$userName = safeFilter($_POST['user_name']);
+
+if ($userName !== '') {
+    session_start();
+    $_SESSION['user_name'] = $userName;
+}
+
+header('Location: index.php');
