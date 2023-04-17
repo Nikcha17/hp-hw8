@@ -1,7 +1,7 @@
 <?php
  declare(strict_types=1);
 
-function safeFilter(string $d): string
+function clearStringFromRequest(string $str): string
 {
     $d = trim($d);
     $d = stripslashes($d);
@@ -9,7 +9,7 @@ function safeFilter(string $d): string
     return $data;
 }
 
-$userName = safeFilter($_POST['user_name']);
+$userName = clearStringFromRequest($_POST['user_name']);
 
 if ($userName !== '') {
     session_start();
